@@ -1,7 +1,7 @@
 {
-  "name": "tetris-class-demo",
+  "name": "computed-app",
   "version": "1.0.0",
-  "description": "tetris game.",
+  "description": "computed app.",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/develop.js --hot --inline",
