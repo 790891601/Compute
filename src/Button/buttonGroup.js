@@ -6,34 +6,36 @@ export default class ButtonGroup extends React.Component {
         super(props)
     }
 
+    setClassName() {
+        const { keys } = this.props
+        const  bg = ["C", "÷", "×", "←", "-", "+"]
+        const defaultClassName = "row"
+
+        return keys.map(value => {
+            //class=bg,row
+            if(bg.includes(value)) {
+                return `${ defaultClassName } bg`
+            //class=computed,row
+            }else if(value === "=") {
+                return `${ defaultClassName } conputed`
+            }
+            //class="row"
+            return defaultClassName
+        })
+    }
+
     render() {
-        const { onClick } = this.props
-        return <div className="rows-wrap" ><div className="rows">
-            <Button value="C" className="bg" onClick={ onClick }  />
-            <Button value="7" onClick={ onClick }  />
-            <Button value="4" onClick={ onClick } />
-            <Button value="1" onClick={ onClick } />
-            <Button value="%" onClick={ onClick } />
+        const { onClick, keys } = this.props
+
+        // customeClassName = array(列1,列2, 列3 )类名数组
+        const customeClassName = this.setClassName()
+
+        return <div className="rows">
+            { 
+                keys.map((value,index) => {
+                    return <Button key={ value } value={ value } className={ customeClassName[index] } onClick={ onClick } ></Button>
+                })
+            }
         </div>
-        <div className="rows">    
-            <Button value="÷" className="bg" onClick={ onClick } />
-            <Button value="8" onClick={ onClick } />
-            <Button value="5" onClick={ onClick } />
-            <Button value="2" onClick={ onClick } />
-            <Button value="0" onClick={ onClick } />
-        </div>
-        <div className="rows">
-            <Button value="×" className="bg" onClick={ onClick } />
-            <Button value="9" onClick={ onClick }  />
-            <Button value="6" onClick={ onClick } />
-            <Button value="3" onClick={ onClick } />
-            <Button value="." onClick={ onClick } />       
-        </div>
-        <div className="rows">
-            <Button value="←" className="bg" onClick={ onClick } />
-            <Button value="-" className="bg" onClick={ onClick } />
-            <Button value="+" className="bg" onClick={ onClick } />
-            <Button value="=" className="compoted" onClick={ onClick } />
-        </div></div>
     }
 }

@@ -1,18 +1,15 @@
+import ReactDOM from "react-dom"
 import ReactView from "./reactView"
 import "./view.less"
 
 export default class View {
-    context = null
-
     constructor(sel) {
-        this.container_ = document.querySelector(sel)
+        this.app_ = document.querySelector(sel)
     }
 
-    get container() {
-        return this.container_
-    }
+    render() {
+        const { app_ } = this
 
-    start() {
-        ReactView(this.container)
+        ReactDOM.render(<ReactView />, app_)
     }
 }
